@@ -4,6 +4,7 @@ const CREATE_POST = '/v1/hackathon_plgn/create_post';
 const LOGIN = '/v1/hackathon_plgn/autorization';
 const LIKE = '/v1/hackathon_plgn/upvote';
 const DISLIKE = '/v1/hackathon_plgn/downvote';
+const INFO = '/v1/chain/get_table_rows';
 
 const POST = "POST";
 
@@ -25,6 +26,14 @@ export function upvote(postId, name) {
 
 export function downvote(postId, name) {
 	return customerFetch(DISLIKE, POST, JSON.stringify([postId, name]));
+}
+
+export function getPostsInfo() {
+	return customerFetch(INFO, POST, '{"scope":"hackathon", "code":"hackathon", "table":"posttable", "json": true}');
+}
+
+export function getVoteInfo() {
+	return customerFetch(INFO, POST, '{"scope":"hackathon", "code":"hackathon", "table":"votetable", "json": true}');
 }
 
 function customerFetch(path, method, body) {

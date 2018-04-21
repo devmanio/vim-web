@@ -1,3 +1,5 @@
+import {getPostsInfo, getVoteInfo} from "../services/eosio";
+
 export function getPosts() {
 	const posts = {
 		'1': {
@@ -60,5 +62,15 @@ export function getPosts() {
 	return {
 		type: 'GET_POSTS_SUCCESS',
 		posts
+	}
+}
+
+export function getPostsI() {
+	return async dispatch => {
+		const response = await getVoteInfo();
+		dispatch({
+			type: 'GET_POSTS_INFO',
+			response
+		});
 	}
 }

@@ -3,7 +3,7 @@ import Helmet from "../common/Helmet";
 import './index.css';
 import {withWrapper} from "create-react-server/wrapper";
 import {connect} from "react-redux";
-import {getPosts} from "../../actions/posts";
+import {getPosts, getPostsI} from "../../actions/posts";
 import Post from "../Post/Post";
 import {Scrollbars} from "react-custom-scrollbars";
 
@@ -13,6 +13,7 @@ class Index extends Component {
 		super(props);
 		props.dispatch(getPosts());
 		this.getPostsComponents.bind(this);
+		props.dispatch(getPostsI());
 	}
 
 	getPostsComponents() {
