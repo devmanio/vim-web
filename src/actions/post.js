@@ -2,37 +2,43 @@ import {getStore} from "../app";
 import steem from 'steem';
 import {compressJPEG} from "../utils/compressor";
 import {getPostingKey, getUserName, loadConfig} from "../utils/configReader";
-import {savePost} from "../services/eosio";
+import {downvote, savePost, upvote} from "../services/eosio";
 import {getNextPostId} from "../utils/utils";
 
 loadConfig('/config.txt');
 
 export function changeLike(postId) {
 	const state = getStore().getState();
-	const userId = state.login.userId;
+	const name = state.login.user;
 	const post = state.posts[postId];
 	return dispatch => {
-		if (post.likes.includes(userId)) {
-			dispatch(dislike(postId, userId));
+		if (post.likes.includes(name)) {
+			dispatch(dislike(postId, name));
 		} else {
-			dispatch(like(postId, userId));
+			dispatch(like(postId, name));
 		}
 	}
 }
 
-function dislike(postId, userId) {
-	return {
-		type: 'DISLIKE_POST',
-		postId,
-		userId
+function dislike(postId, name) {
+	return async dispatch => {
+		await downvote(postId, name);
+		dispatch({
+			type: 'DISLIKE_POST',
+			postId,
+			name
+		});
 	}
 }
 
-function like(postId, userId) {
-	return {
-		type: 'LIKE_POST',
-		postId,
-		userId
+function like(postId, name) {
+	return async dispatch => {
+		await upvote(postId, name);
+		dispatch({
+			type: 'LIKE_POST',
+			postId,
+			name
+		});
 	}
 }
 

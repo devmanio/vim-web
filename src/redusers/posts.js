@@ -11,13 +11,13 @@ export default function posts(state = {}, action) {
 				...state,
 				[action.postId]: {
 					...state[action.postId],
-					likes: [...state[action.postId].likes, action.userId]
+					likes: [...state[action.postId].likes, action.name]
 				}
 			};
 		case 'DISLIKE_POST':
 			const likes = state[action.postId].likes;
 			let newLikes = likes.slice(0, likes.length);
-			newLikes.splice(likes.indexOf(action.userId), 1);
+			newLikes.splice(likes.indexOf(action.name), 1);
 			return {
 				...state,
 				[action.postId]: {

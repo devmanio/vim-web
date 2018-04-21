@@ -1,7 +1,9 @@
 const HOST = 'http://192.168.43.3:8888';
 const CREATE_ACCOUNT = '/v1/hackathon_plgn/create_account';
 const CREATE_POST = '/v1/hackathon_plgn/create_post';
-const LOGIN = '/v1/wallet/unlock';
+const LOGIN = '/v1/hackathon_plgn/autorization';
+const LIKE = '/v1/hackathon_plgn/upvote';
+const DISLIKE = '/v1/hackathon_plgn/downvote';
 
 const POST = "POST";
 
@@ -14,8 +16,15 @@ export function createAccount(name) {
 }
 
 export function savePost(name, postingKey, url, hash) {
-
 	return customerFetch(CREATE_POST, POST, JSON.stringify([name, postingKey, url, hash]));
+}
+
+export function upvote(postId, name) {
+	return customerFetch(LIKE, POST, JSON.stringify([postId, name]));
+}
+
+export function downvote(postId, name) {
+	return customerFetch(DISLIKE, POST, JSON.stringify([postId, name]));
 }
 
 function customerFetch(path, method, body) {
