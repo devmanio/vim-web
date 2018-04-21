@@ -5,7 +5,6 @@ import {push} from "react-router-redux";
 import {login, registration} from "../../actions/login";
 import ShowIf from "../common/ShowIf";
 import './login.css';
-import {getInfo, login1, registration1} from "../../services/eosio";
 
 class Login extends Component {
 
@@ -16,9 +15,7 @@ class Login extends Component {
 	}
 
 	login() {
-		login1();
-		//this.props.dispatch(login(this.name.value, this.password.value));
-		//this.props.dispatch(push('/index'));
+		this.props.dispatch(login(this.name.value, this.password.value));
 	}
 
 	registration() {
@@ -29,9 +26,9 @@ class Login extends Component {
 		return (
 			<div className="container_login">
 				<Helmet title='Login'/>
-				<ShowIf show={true}>
+				<ShowIf show={this.props.error}>
 					<div className="error_login">
-						Incorrect login
+						{this.props.error}
 					</div>
 				</ShowIf>
 				<div className="form_login">
@@ -39,7 +36,7 @@ class Login extends Component {
 						WELCOME TO VIM
 					</div>
 					<input type="text" ref={ref => this.name = ref} maxLength={12}/>
-					<input type="password" ref={ref => this.password = ref} minLength={51} maxLength={52}/>
+					<input type="password" ref={ref => this.password = ref}/>
 					<button onClick={this.login.bind(this)}>Login</button>
 					<div className="delimiter"/>
 					<button onClick={this.registration.bind(this)}>Registration</button>
@@ -52,7 +49,8 @@ class Login extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		isAuth: !!state.auth.user && !!state.auth.postingKey
+		isAuth: !!state.login.user && !!state.login.postingKey,
+		...state.login
 	}
 };
 

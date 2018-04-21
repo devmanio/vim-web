@@ -42,7 +42,7 @@ const mapStateToProps = (state, props) => {
 	const post = state.posts[props.postId];
 	return {
 		...post,
-		liked: post.likes.includes(state.auth.userId)
+		liked: post.likes.includes(state.login.userId)
 	}
 };
 

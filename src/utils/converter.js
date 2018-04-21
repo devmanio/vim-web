@@ -3,5 +3,5 @@ export function stringToInteger(str) {
 	for(let i = 0; i < str.length; i++) {
 		result += str.charCodeAt(i);
 	}
-	return parseInt(result);
+	return parseInt(result, 10);
 }

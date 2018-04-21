@@ -1,12 +1,15 @@
 const HOST = 'http://192.168.43.3:8888';
 const CREATE_ACCOUNT = '/v1/hackathon_plgn/create_account';
+const LOGIN = '/v1/wallet/unlock';
 
-export async function login1(login, postingKey) {
-	return null;
+const POST = "POST";
+
+export function logIn(login, postingKey) {
+	return customerFetch(LOGIN, POST, JSON.stringify([login, postingKey]));
 }
 
 export function createAccount(name) {
-	return customerFetch(CREATE_ACCOUNT, "POST", JSON.stringify([name]));
+	return customerFetch(CREATE_ACCOUNT, POST, JSON.stringify([name]));
 }
 
 function customerFetch(path, method, body) {

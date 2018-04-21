@@ -48,7 +48,7 @@ class Header extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		authorized: state.auth.user && state.auth.userId && state.auth.postingKey
+		authorized: state.login.user && state.login.userId && state.login.postingKey
 	}
 };
 

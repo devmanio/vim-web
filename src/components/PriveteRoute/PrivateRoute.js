@@ -22,7 +22,7 @@ class PrivateRoute extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		isAuth: !!state.auth.user && !!state.auth.postingKey
+		isAuth: !!state.login.user && !!state.login.postingKey
 	}
 };
 

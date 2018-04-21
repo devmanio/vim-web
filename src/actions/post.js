@@ -8,7 +8,7 @@ loadConfig('/config.txt');
 
 export function changeLike(postId) {
 	const state = getStore().getState();
-	const userId = state.auth.userId;
+	const userId = state.login.userId;
 	const post = state.posts[postId];
 	return dispatch => {
 		if (post.likes.includes(userId)) {

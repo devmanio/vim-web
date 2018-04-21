@@ -1,12 +1,12 @@
 import {combineReducers} from "redux";
 import {routerReducer} from "react-router-redux";
-import auth from "./auth";
 import posts from "./posts";
 import post from "./post";
 import modal from "./modal";
+import login from "./login";
 
 export default combineReducers({
-	auth,
+	login,
 	posts,
 	post,
 	modal,
