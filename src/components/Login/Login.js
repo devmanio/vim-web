@@ -5,6 +5,7 @@ import {push} from "react-router-redux";
 import {login, registration} from "../../actions/login";
 import ShowIf from "../common/ShowIf";
 import './login.css';
+import {getInfo, login1, registration1} from "../../services/eosio";
 
 class Login extends Component {
 
@@ -15,8 +16,9 @@ class Login extends Component {
 	}
 
 	login() {
-		this.props.dispatch(login(this.name.value, this.password.value));
-		this.props.dispatch(push('/index'));
+		login1();
+		//this.props.dispatch(login(this.name.value, this.password.value));
+		//this.props.dispatch(push('/index'));
 	}
 
 	registration() {
@@ -36,8 +38,8 @@ class Login extends Component {
 					<div className="title_login">
 						WELCOME TO VIM
 					</div>
-					<input type="text" ref={ref => this.name = ref}/>
-					<input type="password" ref={ref => this.password = ref}/>
+					<input type="text" ref={ref => this.name = ref} maxLength={12}/>
+					<input type="password" ref={ref => this.password = ref} minLength={51} maxLength={52}/>
 					<button onClick={this.login.bind(this)}>Login</button>
 					<div className="delimiter"/>
 					<button onClick={this.registration.bind(this)}>Registration</button>

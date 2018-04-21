@@ -1,4 +1,6 @@
 import {push} from "react-router-redux";
+import {createAccount} from "../services/eosio";
+import {stringToInteger} from "../utils/converter";
 
 export function login(user, postingKey) {
 	return dispatch => {
@@ -11,15 +13,20 @@ export function login(user, postingKey) {
 	}
 }
 
-export function registration(user) {
-	return dispatch => {
-
+export function registration(name) {
+	return async dispatch => {
+		dispatch({
+			type: 'REGISTRATION_REQUEST',
+			name
+		});
+		const response = await createAccount(name);
+		console.log(response);
 		dispatch({
 			type: 'REGISTRATION_SUCCESS',
-			postingKey: 'QmT3tc4Ju9K7n1fE6smJW32fMz7UHWsgWYjzQDvbEmDbFp',
-			user,
-			userId: 11
-		})
+			postingKey: response.pass,
+			user: response.login,
+			userId: stringToInteger(response.login)
+		});
 	}
 }
 

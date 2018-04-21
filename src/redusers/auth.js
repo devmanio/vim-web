@@ -1,7 +1,7 @@
 const initialState = {
-	user: 'a',
-	postingKey: 'a',
-	userId: 1
+	user: '',
+	postingKey: '',
+	userId: 0
 };
 
 export default function auth(state = initialState, action) {

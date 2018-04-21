@@ -43,7 +43,7 @@ export function createPost(file) {
 		let blob = await compressJPEG(file);
 		let response = await _fileUpload(blob);
 		//TODO send to back
-		const name = 'newName';
+		const name = 'wwwwwwwwwwwww';
 		const post = {
 			id: stringToInteger(name),
 			url: response.url,
