@@ -59,7 +59,7 @@ export function logout() {
 			type: "LOGOUT_REQUEST"
 		});
 		try {
-			const response = await createAccount(name);
+			//TODO await logoutAccount(name);
 			dispatch({
 				type: 'LOGOUT_SUCCESS',
 			});
