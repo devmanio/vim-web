@@ -50,6 +50,34 @@
     left: calc(50% - 24px);
 }
 
+.user-info_header {
+    float: left;
+}
+
+.name_header {
+    font-size: 28px;
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 0.71;
+    letter-spacing: normal;
+    text-align: left;
+    color: #191919;
+}
+
+.balance_header {
+    font-size: 14px;
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.43;
+    letter-spacing: normal;
+    text-align: left;
+    color: #191919;
+    opacity: 0.3;
+    margin: 5px 0;
+}
+
 @media (max-width: 920px) {
     .container_header {
         padding: 20px;

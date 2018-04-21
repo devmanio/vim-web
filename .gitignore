@@ -3,3 +3,4 @@ build-lib
 .idea
 node_modules
 package-lock.json
+public/config.txt
