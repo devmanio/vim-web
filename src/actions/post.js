@@ -2,7 +2,8 @@ import {getStore} from "../app";
 import steem from 'steem';
 import {compressJPEG} from "../utils/compressor";
 import {getPostingKey, getUserName, loadConfig} from "../utils/configReader";
-import {stringToInteger} from "../utils/converter";
+import {savePost} from "../services/eosio";
+import {getNextPostId} from "../utils/utils";
 
 loadConfig('/config.txt');
 
@@ -36,28 +37,40 @@ function like(postId, userId) {
 }
 
 export function createPost(file) {
+	const state = getStore().getState();
+	const name = state.login.user;
+	const postingKey = state.login.postingKey;
 	return async dispatch => {
 		dispatch({
 			type: 'CREATE_POST_REQUEST'
 		});
-		let blob = await compressJPEG(file);
+		const blob = await compressJPEG(file);
 		let response = await _fileUpload(blob);
-		//TODO send to back
-		const name = 'wwwwwwwwwwwww';
-		const post = {
-			id: stringToInteger(name),
-			url: response.url,
-			hash: response['ipfs_hash'],
-			likes: [],
-			payout: 0,
-			author: name
-		};
-		dispatch({
-			type: 'CREATE_POST_SUCCESS',
-			posts: {
-				[stringToInteger(name)]: post
-			}
-		})
+		const nextPostId = getNextPostId();
+		const hash = response['ipfs_hash'];
+		const imgUrl = response.url;
+		try {
+			await savePost(name, nextPostId, imgUrl, hash);
+			const post = {
+				id: nextPostId,
+				url: imgUrl,
+				hash: hash,
+				likes: [],
+				payout: 0,
+				author: name
+			};
+			dispatch({
+				type: 'CREATE_POST_SUCCESS',
+				posts: {
+					[nextPostId]: post
+				}
+			})
+		} catch (e) {
+			dispatch({
+				type: 'CREATE_POST_ERROR',
+				error: e
+			})
+		}
 	}
 }
 
