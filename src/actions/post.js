@@ -2,6 +2,7 @@ import {getStore} from "../app";
 import steem from 'steem';
 import {compressJPEG} from "../utils/compressor";
 import {getPostingKey, getUserName, loadConfig} from "../utils/configReader";
+import {stringToInteger} from "../utils/converter";
 
 loadConfig('/config.txt');
 
@@ -41,24 +42,23 @@ export function createPost(file) {
 		});
 		let blob = await compressJPEG(file);
 		let response = await _fileUpload(blob);
+		//TODO send to back
+		const name = 'newName';
 		const post = {
-			id: new Date().toLocaleTimeString(),
-			url: '/images/test.jpg',
-			hash: 'QmT3tc4Ju9K7n1fE6smJW32fMz7UHWsgWYjzQDvbEmDbFp',
-			likes: [3, 5, 8],
-			payout: 4.32,
-			author: 3
+			id: stringToInteger(name),
+			url: response.url,
+			hash: response['ipfs_hash'],
+			likes: [],
+			payout: 0,
+			author: name
 		};
 		dispatch({
 			type: 'CREATE_POST_SUCCESS',
-			url: response.url,
-			hash: response['ipfs_hash']
+			posts: {
+				[stringToInteger(name)]: post
+			}
 		})
 	}
-}
-
-function _getBaseUrl() {
-	return 'https://qa.steepshot.org/api/v1_1';
 }
 
 function _fileUpload(file) {
@@ -80,7 +80,7 @@ function _fileUpload(file) {
 			let form = new FormData();
 			form.append('file', file);
 			form.append('trx', JSON.stringify(transaction));
-			return fetch(`${_getBaseUrl()}/media/upload`, {
+			return fetch('https://qa.steepshot.org/api/v1_1/media/upload', {
 				method: 'POST',
 				body: form
 			}).then(response => response.json())
