@@ -1,5 +1,6 @@
 const initialState = {
-	creating: false
+	creating: false,
+	updatingPosts: null
 };
 
 
@@ -14,6 +15,16 @@ export default function post(state = initialState, action) {
 			return {
 				...state,
 				creating: true
+			};
+		case 'START_UPDATING_POST':
+			return {
+				...state,
+				updatingPosts: action.timeout
+			};
+		case 'STOP_UPDATING_POST':
+			return {
+				...state,
+				updatingPosts: null
 			};
 		default:
 			return state;

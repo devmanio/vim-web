@@ -36,6 +36,10 @@ export function getVoteInfo() {
 	return customerFetch(INFO, POST, '{"scope":"hackathon", "code":"hackathon", "table":"votetable", "json": true}');
 }
 
+export function getAccountInfo(name) {
+	return customerFetch(INFO, POST, '{"scope":"hackathon", "code":"'+ name +'", "table":"accounts", "json": true}');
+}
+
 function customerFetch(path, method, body) {
 	return new Promise( (resolve, reject) => {
 		const url = HOST + path;
