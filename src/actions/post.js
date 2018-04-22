@@ -45,7 +45,6 @@ function like(postId, name) {
 export function createPost(file) {
 	const state = getStore().getState();
 	const name = state.login.user;
-	const postingKey = state.login.postingKey;
 	return async dispatch => {
 		dispatch({
 			type: 'CREATE_POST_REQUEST'

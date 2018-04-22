@@ -10,6 +10,7 @@ export function login(user, postingKey) {
 			name: user,
 			postingKey
 		});
+		await logIn(user, postingKey);
 		try {
 			dispatch({
 				type: "LOGIN_SUCCESS",

@@ -9,10 +9,10 @@ export function getPosts() {
 		});
 		try {
 			const posts = await getPostsInfo();
-			const likes = await await getVoteInfo();
-			const account = await getAccountInfo(state.login.user);
 			console.log(posts);
+			const likes = await await getVoteInfo();
 			console.log(likes);
+			const account = await getAccountInfo(state.login.user);
 			console.log(account);
 			dispatch({
 				type: 'GET_POSTS_SUCCESS',
