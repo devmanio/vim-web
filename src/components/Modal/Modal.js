@@ -17,20 +17,23 @@ class Modal extends Component {
 	render() {
 		return (
 			<ShowIf show={this.props.show}>
-				<div className="container_modal">
-					<div className="body_modal">
-						<div className="title_modal">
-							Registration complete
+				<div className={this.props.smallScreen ? 'small_modal' : ''}>
+					<div className="container_modal">
+						<div className="body_modal">
+							<div className="title_modal">
+								Registration complete
+							</div>
+							<div className="delimiter_modal"/>
+							<div className="message_modal">
+								Be sure to save your password (you see it just below). Do not tell anyone and do not lose it. It will
+								not
+								be possible to restore it.
+							</div>
+							<div className="hash_modal">
+								{this.props.hash}
+							</div>
+							<button onClick={this.ok.bind(this)}>Ok</button>
 						</div>
-						<div className="delimiter_modal"/>
-						<div className="message_modal">
-							Be sure to save your password (you see it just below). Do not tell anyone and do not lose it. It will not
-							be possible to restore it.
-						</div>
-						<div className="hash_modal">
-							{this.props.hash}
-						</div>
-						<button onClick={this.ok.bind(this)}>Ok</button>
 					</div>
 				</div>
 			</ShowIf>
@@ -40,6 +43,7 @@ class Modal extends Component {
 
 const mapStateToProps = (state) => {
 	return {
+		smallScreen: state.post.width <= 800,
 		...state.modal
 	}
 };

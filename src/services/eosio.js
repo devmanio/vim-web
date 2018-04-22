@@ -1,4 +1,5 @@
-const HOST = 'http://192.168.43.3:8888';
+//const HOST = 'http://192.168.43.3:8888';
+const HOST = 'http://188.166.103.60:8888';
 const CREATE_ACCOUNT = '/v1/hackathon_plgn/create_account';
 const CREATE_POST = '/v1/hackathon_plgn/create_post';
 const LOGIN = '/v1/wallet/unlock';
