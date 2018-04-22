@@ -23,6 +23,7 @@ export default function post(state = initialState, action) {
 				...state,
 				openedSend: true
 			};
+		case 'LOGOUT_SUCCESS':
 		case 'CLOSE_SEND':
 			return {
 				...state,

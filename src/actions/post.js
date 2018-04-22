@@ -18,7 +18,6 @@ export function changeLike(postId) {
 		} else {
 			dispatch(like(postId, name));
 		}
-		dispatch(getPosts());
 	}
 }
 
@@ -72,7 +71,6 @@ export function createPost(file) {
 					[nextPostId]: post
 				}
 			});
-			dispatch(getPosts());
 		} catch (e) {
 			dispatch({
 				type: 'CREATE_POST_ERROR',

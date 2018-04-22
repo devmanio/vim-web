@@ -18,7 +18,7 @@ class Post extends Component {
 			<div className="container_post">
 				<div className="photo_post" style={style}>
 					<div className="likes_post">
-						{this.props.likes.length}
+						{this.props.likes[0] !== "" ? this.props.likes.length : 0}
 					</div>
 					<div className="money_post">
 						{this.props.payout.toFixed(3)} VIM
