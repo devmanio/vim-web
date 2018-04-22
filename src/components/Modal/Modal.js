@@ -28,7 +28,7 @@ class Modal extends Component {
 							be possible to restore it.
 						</div>
 						<div className="hash_modal">
-							QmT3tc4Ju9K7n1fE6smJW32fMz7UHWsgWYjzQDvbEmDbFp
+							{this.props.hash}
 						</div>
 						<button onClick={this.ok.bind(this)}>Ok</button>
 					</div>

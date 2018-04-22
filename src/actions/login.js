@@ -11,7 +11,6 @@ export function login(user, postingKey) {
 			postingKey
 		});
 		try {
-			const result = await logIn(user, postingKey);
 			dispatch({
 				type: "LOGIN_SUCCESS",
 				user,
@@ -37,6 +36,7 @@ export function registration(name) {
 		});
 		try {
 			const response = await createAccount(name);
+			await logIn(response.login, response.pass);
 			dispatch({
 				type: 'REGISTRATION_SUCCESS',
 				postingKey: response.pass,
@@ -61,7 +61,7 @@ export function logout() {
 			type: "LOGOUT_REQUEST"
 		});
 		try {
-			await logoutI(state.login.user, state.login.postingKey);
+			await logoutI(state.login.user);
 			dispatch({
 				type: 'LOGOUT_SUCCESS',
 			});

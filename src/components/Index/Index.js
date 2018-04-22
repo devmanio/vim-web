@@ -11,7 +11,7 @@ class Index extends Component {
 
 	constructor(props) {
 		super(props);
-		props.dispatch(startUpdatingPosts());
+		//props.dispatch(startUpdatingPosts());
 		this.getPostsComponents.bind(this);
 	}
 
