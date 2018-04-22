@@ -1,6 +1,7 @@
 import {push} from "react-router-redux";
-import {createAccount, logIn} from "../services/eosio";
+import {createAccount, logIn, logoutI} from "../services/eosio";
 import {stringToInteger} from "../utils/converter";
+import {getStore} from "../app";
 
 export function login(user, postingKey) {
 	return async dispatch => {
@@ -54,12 +55,13 @@ export function registration(name) {
 }
 
 export function logout() {
+	const state = getStore().getState();
 	return async dispatch => {
 		dispatch({
 			type: "LOGOUT_REQUEST"
 		});
 		try {
-			//TODO await logoutAccount(name);
+			await logoutI(state.login.user, state.login.postingKey);
 			dispatch({
 				type: 'LOGOUT_SUCCESS',
 			});

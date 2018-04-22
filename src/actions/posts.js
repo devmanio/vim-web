@@ -7,9 +7,23 @@ export function getPosts() {
 		dispatch({
 			type: 'GET_POSTS_REQUEST'
 		});
-		const posts = await getPostsInfo();
-		const likes = await await getVoteInfo();
-		const account = await getAccountInfo(state.login.user);
+		try {
+			const posts = await getPostsInfo();
+			const likes = await await getVoteInfo();
+			const account = await getAccountInfo(state.login.user);
+			console.log(posts);
+			console.log(likes);
+			console.log(account);
+			dispatch({
+				type: 'GET_POSTS_SUCCESS',
+				posts
+			})
+		} catch (e) {
+			dispatch({
+				type: 'GET_POSTS_ERROR',
+				error: e
+			})
+		}
 		/*const posts = [id]:{
 			id: 1,
 			url: '/images/test.jpg',
@@ -18,10 +32,7 @@ export function getPosts() {
 			payout: 4.32,
 			author: 3
 		}*/
-		dispatch({
-			type: 'GET_POSTS_SUCCESS',
-			posts
-		})
+
 	}
 }
 
