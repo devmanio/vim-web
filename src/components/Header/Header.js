@@ -66,11 +66,13 @@ class Header extends Component {
 								<div className="logout_header" onClick={this.logout.bind(this)}>
 									<div className="logout-img_header"/>
 								</div>
-								<ShowIf show={!this.props.showSend}>
-									<div className="sen_header" onClick={this.openSend.bind(this)}/>
-								</ShowIf>
-								<ShowIf show={this.props.showSend}>
-									<div className="clo_header" onClick={this.closeSend.bind(this)}/>
+								<ShowIf show={this.props.smallScreen}>
+									<ShowIf show={!this.props.showSend}>
+										<div className="sen_header" onClick={this.openSend.bind(this)}/>
+									</ShowIf>
+									<ShowIf show={this.props.showSend}>
+										<div className="clo_header" onClick={this.closeSend.bind(this)}/>
+									</ShowIf>
 								</ShowIf>
 								<button className="create_header">
 									<input type="file"
@@ -88,7 +90,7 @@ class Header extends Component {
 									<div className="balance_header">
 										{this.props.money}
 									</div>
-									<button className="logout-btn_header">Logout</button>
+									<button className="logout-btn_header" onClick={this.logout.bind(this)}>Logout</button>
 								</div>
 							</ShowIf>
 						</ShowIf>
@@ -104,9 +106,9 @@ const mapStateToProps = (state) => {
 	return {
 		showSend: state.post.openedSend,
 		smallScreen: state.post.width <= 800,
-		...state.login,
+		...state.login, /*
 		user: 'test user',
-		money: '0.34243 VIM',
+		money: '0.34243 VIM',*/
 		authorized: state.login.user && state.login.userId && state.login.postingKey
 	};
 };

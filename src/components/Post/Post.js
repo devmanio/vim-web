@@ -21,7 +21,7 @@ class Post extends Component {
 						{this.props.likes.length}
 					</div>
 					<div className="money_post">
-						${this.props.payout}
+						{this.props.payout.toFixed(3)} VIM
 					</div>
 					<div className={this.props.liked ? 'liked-btn_post' : 'like-btn_post'}
 							 onMouseEnter={() => {}} onClick={this.like.bind(this)}>

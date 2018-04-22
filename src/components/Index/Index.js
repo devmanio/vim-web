@@ -11,7 +11,7 @@ class Index extends Component {
 
 	constructor(props) {
 		super(props);
-		//props.dispatch(startUpdatingPosts());
+		props.dispatch(startUpdatingPosts());
 		this.getPostsComponents.bind(this);
 	}
 
@@ -24,7 +24,7 @@ class Index extends Component {
 		for (let post in this.props.posts) {
 			posts.push(<Post postId={post} key={post}/>)
 		}
-		return posts;
+		return posts.reverse();
 	}
 
 	renderScrollbarContainer() {

@@ -4,6 +4,7 @@ import {compressJPEG} from "../utils/compressor";
 import {getPostingKey, getUserName, loadConfig} from "../utils/configReader";
 import {downvote, savePost, upvote} from "../services/eosio";
 import {getNextPostId} from "../utils/utils";
+import {getPosts} from "./posts";
 
 loadConfig('/config.txt');
 
@@ -17,6 +18,7 @@ export function changeLike(postId) {
 		} else {
 			dispatch(like(postId, name));
 		}
+		dispatch(getPosts());
 	}
 }
 
@@ -69,7 +71,8 @@ export function createPost(file) {
 				posts: {
 					[nextPostId]: post
 				}
-			})
+			});
+			dispatch(getPosts());
 		} catch (e) {
 			dispatch({
 				type: 'CREATE_POST_ERROR',
