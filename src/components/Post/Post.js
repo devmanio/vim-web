@@ -42,8 +42,7 @@ const mapStateToProps = (state, props) => {
 	const post = state.posts[props.postId];
 	return {
 		...post,
-		likes: post.likes || [],
-		liked: post.likes && post.likes.includes(state.login.userId)
+		liked: post.likes && post.likes.includes(state.login.user)
 	}
 };
 
