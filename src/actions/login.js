@@ -57,12 +57,12 @@ export function registration(name) {
 
 export function logout() {
 	const state = getStore().getState();
-	return async dispatch => {
+	return dispatch => {
 		dispatch({
 			type: "LOGOUT_REQUEST"
 		});
 		try {
-			await logoutI(state.login.user);
+			logoutI(state.login.user);
 			dispatch({
 				type: 'LOGOUT_SUCCESS',
 			});

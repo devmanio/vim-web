@@ -4,7 +4,8 @@ const initialState = {
 	userId: 0,
 	error: '',
 	login: false,
-	logout: false
+	logout: false,
+	money: 0
 };
 
 export default function login(state = initialState, action) {
@@ -43,6 +44,11 @@ export default function login(state = initialState, action) {
 				postingKey: '',
 				userId: 0,
 				logout: false
+			};
+		case 'UPDATE_MONEY':
+			return {
+				...state,
+				money: action.money
 			};
 		default:
 			return state;

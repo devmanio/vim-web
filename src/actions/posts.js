@@ -42,7 +42,10 @@ export function getPosts() {
 				})
 			});
 			const account = await getAccountInfo(state.login.user);
-			console.log(account);
+			dispatch({
+				type: 'UPDATE_MONEY',
+				money: account.rows[0].balance
+			});
 			dispatch({
 				type: 'GET_POSTS_SUCCESS',
 				posts: postsArray

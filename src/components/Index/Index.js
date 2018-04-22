@@ -3,7 +3,7 @@ import Helmet from "../common/Helmet";
 import './index.css';
 import {withWrapper} from "create-react-server/wrapper";
 import {connect} from "react-redux";
-import {getPosts, startUpdatingPosts, stopUpdatingPosts} from "../../actions/posts";
+import {startUpdatingPosts, stopUpdatingPosts} from "../../actions/posts";
 import Post from "../Post/Post";
 import {Scrollbars} from "react-custom-scrollbars";
 
@@ -11,8 +11,7 @@ class Index extends Component {
 
 	constructor(props) {
 		super(props);
-		props.dispatch(getPosts());
-		//props.dispatch(startUpdatingPosts());
+		props.dispatch(startUpdatingPosts());
 		this.getPostsComponents.bind(this);
 	}
 

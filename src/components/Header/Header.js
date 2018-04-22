@@ -23,10 +23,10 @@ class Header extends Component {
 				<ShowIf show={this.props.authorized}>
 					<div className="user-info_header">
 						<div className="name_header">
-							Nina Robbins
+							{this.props.user}
 						</div>
 						<div className="balance_header">
-							$2345
+							{this.props.money}
 						</div>
 					</div>
 					<div className="logout_header" onClick={this.logout.bind(this)}>
@@ -48,6 +48,7 @@ class Header extends Component {
 
 const mapStateToProps = (state) => {
 	return {
+		...state.login,
 		authorized: state.login.user && state.login.userId && state.login.postingKey
 	}
 };
