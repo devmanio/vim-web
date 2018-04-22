@@ -2,13 +2,14 @@ import {getAccountInfo, getPostsInfo, getVoteInfo} from "../services/eosio";
 import {getStore} from "../app";
 
 export function getPosts() {
+	const state = getStore().getState();
 	return async dispatch => {
 		dispatch({
 			type: 'GET_POSTS_REQUEST'
 		});
 		const posts = await getPostsInfo();
 		const likes = await await getVoteInfo();
-		const account = await getAccountInfo(name);
+		const account = await getAccountInfo(state.login.user);
 		/*const posts = [id]:{
 			id: 1,
 			url: '/images/test.jpg',
