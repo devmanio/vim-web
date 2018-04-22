@@ -8,32 +8,64 @@ export function getPosts() {
 			type: 'GET_POSTS_REQUEST'
 		});
 		try {
-			const posts = await getPostsInfo();
-			console.log(posts);
 			const likes = await await getVoteInfo();
-			console.log(likes);
+			const posts = await getPostsInfo();
+
+			let postsStr;
+			let info;
+			let postsArray = {};
+			let like;
+			let postId;
+			let likeArr;
+			posts.rows.forEach(account => {
+				postsStr = account.data.split('@');
+				postsStr.forEach(post => {
+					info = post.split('$');
+					postId = parseInt(info[0]);
+					like = getLike(likes.rows, postId);
+					if (like) {
+						likeArr = like.data.split('@');
+						likeArr = getUnicValue(likeArr);
+					} else {
+						likeArr = [];
+						like = {cost: '0'};
+					}
+					postsArray[postId] = {
+						id: postId,
+						url: info[1],
+						hash: info[2],
+						likes: likeArr,
+						payout: parseFloat(like['cost'].split(' ')[0]),
+						author: account.account
+					}
+
+				})
+			});
 			const account = await getAccountInfo(state.login.user);
 			console.log(account);
 			dispatch({
 				type: 'GET_POSTS_SUCCESS',
-				posts
+				posts: postsArray
 			})
 		} catch (e) {
+			console.log(e);
 			dispatch({
 				type: 'GET_POSTS_ERROR',
 				error: e
 			})
 		}
-		/*const posts = [id]:{
-			id: 1,
-			url: '/images/test.jpg',
-			hash: 'QmT3tc4Ju9K7n1fE6smJW32fMz7UHWsgWYjzQDvbEmDbFp',
-			likes: [3, 5, 8],
-			payout: 4.32,
-			author: 3
-		}*/
-
 	}
+}
+
+function getLike(likes, postId) {
+	let result = null;
+	likes.forEach(like => {
+		if (like['uuid_post'] == postId) {
+			result = like;
+			return result;
+		}
+	});
+	return result;
 }
 
 export function stopUpdatingPosts() {
@@ -56,3 +88,19 @@ export function startUpdatingPosts() {
 		})
 	}
 }
+
+function getUnicValue(arg) {
+	const result = [];
+	const obj = {};
+
+	for (let i = 0; i < arg.length; i++) {
+		obj[arg[i]] = arg[i];
+	}
+
+	for (let i in obj) {
+		result.push(obj[i])
+	}
+
+	return result;
+}
+
