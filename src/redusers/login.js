@@ -1,7 +1,7 @@
 const initialState = {
-	user: '',
-	postingKey: '',
-	userId: 0,
+	user: 'a',
+	postingKey: 'a',
+	userId: 1,
 	error: '',
 	login: false,
 	logout: false,

@@ -33,13 +33,13 @@ class Login extends Component {
 				</ShowIf>
 				<div className="form_login">
 					<div className="title_login">
-						WELCOME TO VIM
+						Welcome to VIM
 					</div>
-					<input type="text" ref={ref => this.name = ref} maxLength={12}/>
-					<input type="password" ref={ref => this.password = ref}/>
+					<input type="text" ref={ref => this.name = ref} maxLength={12} placeholder="Login"/>
+					<input type="password" ref={ref => this.password = ref} placeholder="Posting key"/>
 					<button onClick={this.login.bind(this)}>Login</button>
 					<div className="delimiter"/>
-					<button onClick={this.registration.bind(this)}>Registration</button>
+					<button className="registration" onClick={this.registration.bind(this)}>Registration</button>
 				</div>
 				<div className="background_login"/>
 			</div>

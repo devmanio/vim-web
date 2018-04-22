@@ -1,6 +1,8 @@
 const initialState = {
 	creating: false,
-	updatingPosts: null
+	updatingPosts: null,
+	width: window.innerWidth,
+	openedSend: false
 };
 
 
@@ -15,6 +17,21 @@ export default function post(state = initialState, action) {
 			return {
 				...state,
 				creating: true
+			};
+		case 'OPEN_SEND':
+			return {
+				...state,
+				openedSend: true
+			};
+		case 'CLOSE_SEND':
+			return {
+				...state,
+				openedSend: false
+			};
+		case 'RESIZE_WINDOW':
+			return {
+				...state,
+				width: window.innerWidth
 			};
 		case 'START_UPDATING_POST':
 			return {

@@ -61,6 +61,14 @@
     align-items: center;
     border-bottom: 1px solid #fafafa;
     margin-bottom: 9px;
+    font-size: 28px;
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 0.71;
+    letter-spacing: normal;
+    text-align: center;
+    color: #191919;
 }
 
 .delimiter {
@@ -74,11 +82,22 @@
 .form_login input {
     height: 50px;
     margin-top: 20px;
+    border-radius: 6px;
+    background-color: #fafafa;
+    border: 0;
+    padding-left: 10px;
 }
 
 .form_login button {
     height: 50px;
     margin-top: 30px;
+    border-radius: 10px;
+    background-color: #0029ff;
+    border: 0;
+}
+
+.form_login button:last-of-type {
+    background-color: #6bbc0c;
 }
 
 @media (max-width: 450px) {
@@ -90,6 +109,10 @@
 @media (max-height: 600px) {
     .container_login {
         justify-content: flex-start;
+    }
+
+    .form_login {
+        margin-top: 40px;
     }
 
     .error_login {
