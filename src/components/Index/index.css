@@ -3,7 +3,10 @@
     display: flex;
     flex-wrap: wrap;
     align-content: space-around;
-    justify-content: space-around;
+}
+
+.small-screen .container_index {
+    justify-content: center;
 }
 
 .scroll-container_index {

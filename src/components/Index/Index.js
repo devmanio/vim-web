@@ -36,20 +36,23 @@ class Index extends Component {
 			return null;
 		}
 		return (
-			<Scrollbars
-				renderView={this.renderScrollbarContainer.bind(this)}
-			>
-				<Helmet title='Index'/>
-				<div className="container_index">
-					{this.getPostsComponents()}
-				</div>
-			</Scrollbars>
+			<div className={this.props.smallScreen ? 'small-screen' : ''} style={{position: 'relative', flexGrow: '1'}}>
+				<Scrollbars
+					renderView={this.renderScrollbarContainer.bind(this)}
+				>
+					<Helmet title='Index'/>
+					<div className="container_index">
+						{this.getPostsComponents()}
+					</div>
+				</Scrollbars>
+			</div>
 		);
 	}
 }
 
 const mapStateToProps = (state) => {
 	return {
+		smallScreen: state.post.width <= 800,
 		posts: state.posts
 	}
 };

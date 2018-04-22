@@ -94,7 +94,11 @@ class Header extends Component {
 								</div>
 							</ShowIf>
 						</ShowIf>
-						<div className="logo_header"/>
+						<div className="logo_header"
+								 style={{
+								 	 left: this.props.authorized && this.props.smallScreen ? '20px' : 'calc(50% - 24px)'
+								 }}
+						/>
 					</div>
 				</div>
 			</div>
@@ -106,9 +110,7 @@ const mapStateToProps = (state) => {
 	return {
 		showSend: state.post.openedSend,
 		smallScreen: state.post.width <= 800,
-		...state.login, /*
-		user: 'test user',
-		money: '0.34243 VIM',*/
+		...state.login,
 		authorized: state.login.user && state.login.userId && state.login.postingKey
 	};
 };
