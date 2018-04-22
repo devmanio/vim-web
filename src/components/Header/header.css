@@ -48,6 +48,14 @@
     cursor: pointer;
 }
 
+.create_header:hover {
+    background-color: #0029c3;
+}
+
+.create_header:active {
+    background-color: #002991;
+}
+
 .logo_header {
     position: absolute;
     width: 48px;
@@ -120,12 +128,20 @@
     color: #191919;
 }
 
-.sen-con_header .logout-btn_header {
+.logout-btn_header {
     margin-top: 25px;
     height: 40px;
     border-radius: 10px;
     background-color: #fafafa;
     border: 0;
+}
+
+.logout-btn_header:hover {
+    background-color: #ECECEC;
+}
+
+.logout-btn_header:active {
+    background-color: #ECECEC;
 }
 
 .sen_header, .clo_header {
