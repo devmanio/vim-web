@@ -4,6 +4,7 @@ import {withWrapper} from "create-react-server/wrapper";
 import './app.css';
 import Header from "../Header/Header";
 import Modal from "../Modal/Modal";
+import Spinner from "../Spiner/Spinner";
 
 class App extends Component {
 
@@ -15,6 +16,7 @@ class App extends Component {
 					{this.props.children}
 				</div>
 				<Modal />
+				<Spinner />
 			</div>
 		);
 	}
